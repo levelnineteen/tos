@@ -1,4 +1,4 @@
-# Party Link
+﻿# Party Link
 
 ##機能 
 パーティリンクの生の値（PartyID）を表示し、PartyIDを入力することでパーティに参加する。
