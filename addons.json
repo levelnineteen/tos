@@ -6,7 +6,7 @@
         "fileVersion" : "v1.0.0",
         "releaseTag" : "plink",
         "unicode" : "⛄",
-        "description" : "パーティリンクの生のIDを表示し、入力して参加できるようにする。",
+        "description" : "パーティリンクの生のIDを表示し、入力して参加できるようにする。コマンドは「詳細」から確認してください。",
         "tags" : [
             "party"
         ]
