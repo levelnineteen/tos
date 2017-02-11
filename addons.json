@@ -1,0 +1,14 @@
+﻿[
+    {
+        "name" : "Party Link",
+        "file" : "plink",
+        "extension" : "ipf",
+        "fileVersion" : "v1.0.0",
+        "releaseTag" : "plink",
+        "unicode" : "⛄",
+        "description" : "パーティリンクの生のIDを表示し、入力して参加できるようにする。",
+        "tags" : [
+            "party"
+        ]
+    }
+]
