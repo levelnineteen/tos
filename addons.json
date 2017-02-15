@@ -10,18 +10,5 @@
         "tags" : [
             "party"
         ]
-    },
-    {
-        "name" : "Inventory CSV",
-        "file" : "invcsv",
-        "extension" : "ipf",
-        "fileVersion" : "v1.0.0",
-        "releaseTag" : "invcsv",
-        "unicode" : "⛄",
-        "description" : "単体では動作しません。「詳細」から確認してください。インベントリーの中身をCSV形式で出力します。",
-        "tags" : [
-            "inventory",
-            "csv"
-        ]
     }
 ]
