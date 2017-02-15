@@ -52,4 +52,4 @@ function INVCSV_ON_INIT(addon, frame)
 	acutil.slashCommand("/invcsv", INVCSV_COMMAND);
 end
 
-CHAT_SYSTEM("Inventory CSV v1.0.0 loaded");
+CHAT_SYSTEM("Inventory CSV v1.0.1 loaded");
