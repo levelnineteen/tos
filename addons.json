@@ -20,7 +20,8 @@
         "unicode" : "⛄",
         "description" : "単体では動作しません。「詳細」から確認してください。インベントリーの中身をCSV形式で出力します。",
         "tags" : [
-            "party"
+            "inventory",
+            "csv"
         ]
     }
 ]
