@@ -9,3 +9,6 @@
 
 ## Party Member
 パーティ通知を便利にする
+
+## SimpleWarpFix
+既存（ITOS)のSimpleWarpをティルトルビーのヴァカリネ像に対応
