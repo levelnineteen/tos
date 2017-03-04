@@ -23,5 +23,17 @@
             "inventory",
             "csv"
         ]
+    },
+    {
+        "name" : "Party Member",
+        "file" : "pmember",
+        "extension" : "ipf",
+        "fileVersion" : "v1.0.0",
+        "releaseTag" : "pmember",
+        "unicode" : "⛄",
+        "description" : "パーティにメンバーが参加した時、メンバーのレベル、クラス、（違う場所にいれば）現在地を通知する。パーティの平均レベルが変化した場合、それを通知する。パーティがログアウト、ログインしたときに通知する。",
+        "tags" : [
+            "party"
+        ]
     }
 ]

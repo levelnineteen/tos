@@ -6,3 +6,6 @@
 
 ## Inventory CSV
 インベントリーをCSV形式で出力
+
+## Party Member
+パーティ通知を便利にする
