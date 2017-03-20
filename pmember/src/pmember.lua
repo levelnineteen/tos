@@ -190,7 +190,9 @@ function PMEMBER_SET_LOGOUT_PARTYINFO_ITEM(frame, msg, partyMemberInfo, count, m
 			if g.idlist[j].logout == 0 then
 				local partyMemberName = partyMemberInfo:GetName();
 				g.idlist[j].logout = 1;
-				CHAT_SYSTEM("{#FF0000}[LOGOUT] {/}{#000000}" .. partyMemberName .. "{/}");
+				if partyMemberName ~= "None" then
+					CHAT_SYSTEM("{#FF0000}[LOGOUT] {/}{#000000}" .. partyMemberName .. "{/}");
+				end
 			end
 		end
 	end
@@ -201,7 +203,9 @@ function PMEMBER_UPDATE()
 		g.aveanonum = g.aveanonum - 1;
 		if g.aveanonum <= 0 then
 			g.aveanobool = 0;
-			CHAT_SYSTEM("{#000000}Party Average LV is now " .. g.avelevel .. "{/}");
+			if g.avelevel ~= 0 then
+				CHAT_SYSTEM("{#000000}Party Average LV is now " .. g.avelevel .. "{/}");
+			end
 		end
 	end
 end
@@ -220,4 +224,4 @@ function PMEMBER_ON_INIT(addon, frame)
 	PMEMBER_SETUP_HOOKS();
 end
 
-CHAT_SYSTEM("Party Member v1.0.0 loaded!");
+CHAT_SYSTEM("Party Member v1.0.2 loaded!");
