@@ -5,7 +5,7 @@
         "extension" : "ipf",
         "fileVersion" : "v1.0.0",
         "releaseTag" : "plink",
-        "unicode" : "?",
+        "unicode" : "⛄",
         "description" : "パーティリンクの生のIDを表示し、入力して参加できるようにする。コマンドは「詳細」から確認してください。",
         "tags" : [
             "party"
@@ -17,7 +17,7 @@
         "extension" : "ipf",
         "fileVersion" : "v1.0.1",
         "releaseTag" : "invcsv",
-        "unicode" : "?",
+        "unicode" : "⛄",
         "description" : "単体では動作しません。「詳細」から確認してください。インベントリーの中身をCSV形式で出力します。",
         "tags" : [
             "inventory",
@@ -30,7 +30,7 @@
         "extension" : "ipf",
         "fileVersion" : "v1.0.4",
         "releaseTag" : "pmember",
-        "unicode" : "?",
+        "unicode" : "⛄",
         "description" : "パーティにメンバーが参加した時、メンバーのレベル、クラス、（違う場所にいれば）現在地を通知する。パーティの平均レベルが変化した場合、それを通知する。パーティがログアウト、ログインしたときに通知する。",
         "tags" : [
             "party"
@@ -42,7 +42,7 @@
         "extension" : "ipf",
         "fileVersion" : "v1.0.0",
         "releaseTag" : "simplewarp",
-        "unicode" : "?",
+        "unicode" : "⛄",
         "description" : "既存（ITOS)のSimpleWarpをティルトルビーのヴァカリネ像に対応させたもの。既存の物はアンインストールしてください。",
         "tags" : [
             "warp"
