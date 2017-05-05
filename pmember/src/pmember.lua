@@ -74,7 +74,7 @@ function PMEMBER_PARTY_JOB_TOOLTIP(frame, cid, uiChild, nowJobName)
 		else
 			if g.idlist[cidlistnum].logout == 1 then
 				g.idlist[cidlistnum].logout = 0;
-				CHAT_SYSTEM("{#0000FF}[LOGIN] {/}{#000000}" .. partyMemberName .. "{/}");
+				CHAT_SYSTEM("{#0000FF}[LOGIN] {/}" .. partyMemberName .. "");
 			end
 		end
 		return nil;
@@ -121,9 +121,9 @@ function PMEMBER_PARTY_JOB_TOOLTIP(frame, cid, uiChild, nowJobName)
 		startext = startext .. "{#088A08}" .. dictionary.ReplaceDicIDInCompStr(GET_JOB_NAME(cls, gender)) .. "{/}" .. grade .. " ";
 	end
 	if mapName == mymapName then
-		startext = "{#0000FF}[JOIN] {/}{#000000}" .. partyMemberName .. "{/} {#B40404}Lv" .. level .. "{/}{nl} " .. startext ;
+		startext = "{#00FFFF}[JOIN] {/}" .. partyMemberName .. " {#B40404}Lv" .. level .. "{/}{nl} " .. startext ;
 	else
-		startext = "{#0000FF}[JOIN] {/}{#000000}" .. partyMemberName .. "{/} {#B40404}Lv" .. level .. "{/}{#2E2EFE}(" .. mapName .."){/}{nl} " .. startext ;
+		startext = "{#00FFFF}[JOIN] {/}" .. partyMemberName .. " {#B40404}Lv" .. level .. "{/}{#2E2EFE}(" .. mapName .."){/}{nl} " .. startext ;
 	end
 	CHAT_SYSTEM(startext);
 end
@@ -191,7 +191,7 @@ function PMEMBER_SET_LOGOUT_PARTYINFO_ITEM(frame, msg, partyMemberInfo, count, m
 				local partyMemberName = partyMemberInfo:GetName();
 				g.idlist[j].logout = 1;
 				if partyMemberName ~= "None" then
-					CHAT_SYSTEM("{#FF0000}[LOGOUT] {/}{#000000}" .. partyMemberName .. "{/}");
+					CHAT_SYSTEM("{#FF0000}[LOGOUT] {/}" .. partyMemberName .. "");
 				end
 			end
 		end
@@ -204,7 +204,7 @@ function PMEMBER_UPDATE()
 		if g.aveanonum <= 0 then
 			g.aveanobool = 0;
 			if g.avelevel ~= 0 then
-				CHAT_SYSTEM("{#000000}Party Average LV is now " .. g.avelevel .. "{/}");
+				CHAT_SYSTEM("Party Average LV is now " .. g.avelevel .. "");
 			end
 		end
 	end
@@ -224,4 +224,4 @@ function PMEMBER_ON_INIT(addon, frame)
 	PMEMBER_SETUP_HOOKS();
 end
 
-CHAT_SYSTEM("Party Member v1.0.2 loaded!");
+CHAT_SYSTEM("Party Member v1.0.4 loaded!");
