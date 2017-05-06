@@ -12,6 +12,10 @@ g.partynum = 0;
 g.aveanobool = 0;
 g.aveanonum = 0;
 
+local jsonpath = "../addons/pmember/settings.json";
+local isLoaded = false;
+local op;
+
 function PMEMBER_PARTY_JOB_TOOLTIP(frame, cid, uiChild, nowJobName)
 	PARTY_JOB_TOOLTIP_OLD(frame, cid, uiChild, nowJobName);
 	--CHAT_SYSTEM("SET_PARTY_JOB_TOOLTIP " .. cid);
@@ -74,7 +78,7 @@ function PMEMBER_PARTY_JOB_TOOLTIP(frame, cid, uiChild, nowJobName)
 		else
 			if g.idlist[cidlistnum].logout == 1 then
 				g.idlist[cidlistnum].logout = 0;
-				CHAT_SYSTEM("{#0000FF}[LOGIN] {/}" .. partyMemberName .. "");
+				CHAT_SYSTEM(op.login .. "[LOGIN] {/}" .. op.charname .. partyMemberName .. "{/}");
 			end
 		end
 		return nil;
@@ -118,12 +122,21 @@ function PMEMBER_PARTY_JOB_TOOLTIP(frame, cid, uiChild, nowJobName)
 		elseif grade == 3 then
 			grade = "{#2EFE2E}" .. grade .. "{/}";
 		end
-		startext = startext .. "{#088A08}" .. dictionary.ReplaceDicIDInCompStr(GET_JOB_NAME(cls, gender)) .. "{/}" .. grade .. " ";
+		startext = startext .. op.jobname .. dictionary.ReplaceDicIDInCompStr(GET_JOB_NAME(cls, gender)) .. "{/}" .. grade .. " ";
 	end
+	local pcobj = _G.GetMyPCObject();
 	if mapName == mymapName then
-		startext = "{#00FFFF}[JOIN] {/}" .. partyMemberName .. " {#B40404}Lv" .. level .. "{/}{nl} " .. startext ;
+		if level > pcobj.Lv then
+			startext = op.join .. "[JOIN] {/}" .. op.charname .. partyMemberName .. " {/}" ..op.highlevel .. "Lv" .. level .. "{/}{nl} " .. startext ;
+		else
+			startext = op.join .. "[JOIN] {/}" .. op.charname .. partyMemberName .. " {/}" ..op.lowlevel .. "Lv" .. level .. "{/}{nl} " .. startext ;
+		end
 	else
-		startext = "{#00FFFF}[JOIN] {/}" .. partyMemberName .. " {#B40404}Lv" .. level .. "{/}{#2E2EFE}(" .. mapName .."){/}{nl} " .. startext ;
+		if level > pcobj.Lv then
+			startext = op.join .. "[JOIN] {/}" .. op.charname .. partyMemberName .. " {/}" ..op.highlevel .. "Lv" .. level .. "{/}" .. op.mapname .."(" .. mapName .."){/}{nl} " .. startext ;
+		else
+			startext = op.join .. "[JOIN] {/}" .. op.charname .. partyMemberName .. " {/}" ..op.lowlevel .. "Lv" .. level .. "{/}" .. op.mapname .."(" .. mapName .."){/}{nl} " .. startext ;
+		end
 	end
 	CHAT_SYSTEM(startext);
 end
@@ -191,7 +204,7 @@ function PMEMBER_SET_LOGOUT_PARTYINFO_ITEM(frame, msg, partyMemberInfo, count, m
 				local partyMemberName = partyMemberInfo:GetName();
 				g.idlist[j].logout = 1;
 				if partyMemberName ~= "None" then
-					CHAT_SYSTEM("{#FF0000}[LOGOUT] {/}" .. partyMemberName .. "");
+					CHAT_SYSTEM(op.logout .. "[LOGOUT] {/}" .. partyMemberName .. op.test .. "");
 				end
 			end
 		end
@@ -204,9 +217,46 @@ function PMEMBER_UPDATE()
 		if g.aveanonum <= 0 then
 			g.aveanobool = 0;
 			if g.avelevel ~= 0 then
-				CHAT_SYSTEM("Party Average LV is now " .. g.avelevel .. "");
+				local pcobj = _G.GetMyPCObject();
+				if g.avelevel > pcobj.Lv then
+					CHAT_SYSTEM( op.text .. "Party Average LV is now {/}" .. op.highlevel .. g.avelevel .. "{/}");
+				else
+					CHAT_SYSTEM( op.text .. "Party Average LV is now {/}" .. op.lowlevel .. g.avelevel .. "{/}");
+				end
 			end
 		end
+	end
+end
+
+local function Load()
+	local acutil = require("acutil");
+	return acutil.loadJSON(jsonpath);
+end
+
+local defaults = {
+	text = "",
+	highlevel = "{#FF0000}",
+	lowlevel = "{#00FFFF}",
+	jobname = "{#088A08}",
+	rank1 = "{#088A08}",
+	rank2 = "{#01DF01}",
+	rank3 = "{#2EFE2E}",
+	mapname= "{#2E2EFE}",
+	charname = "",
+	join = "{#00FFFF}",
+	login = "{#00FFFF}",
+	logout = "{#FF0000}"
+};
+
+local function LOAD_SETTINGS()
+	local acutil = require("acutil");
+	local _op, err = Load();
+
+	if err then
+		op = defaults;
+		acutil.saveJSON(jsonpath, op);
+	else
+		op = _op;
 	end
 end
 
@@ -222,6 +272,11 @@ function PMEMBER_ON_INIT(addon, frame)
 	local acutil = require("acutil");
 	addon:RegisterMsg("FPS_UPDATE", "PMEMBER_UPDATE");
 	PMEMBER_SETUP_HOOKS();
+	--json
+	if not isLoaded then
+		isLoaded = true;
+		LOAD_SETTINGS();
+	end
 end
 
-CHAT_SYSTEM("Party Member v1.0.4 loaded!");
+CHAT_SYSTEM("Party Member v1.0.6 loaded!");
