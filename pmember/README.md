@@ -4,6 +4,7 @@
 v1.0.6  
 settings.jsonファイルを編集することで色変更を可能に  
 場所　TreeofSaviorJP\\addons\\pmember\\settings.json  
+*※インストール後一度ゲームを起動しないと作成されません。編集後はゲームの再起動が必要です。*
 内容  
 * text その他のテキスト  
 * highlevel 自分より高いレベル  
