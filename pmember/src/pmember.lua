@@ -26,6 +26,26 @@ local function RepShortName(jobid, gender)
 			return val;
 		end
 	end
+	--nothing=newjob
+	--CHAT_SYSTEM("new job!!");
+	local addname = GET_JOB_NAME(cls, gender);
+
+	local newtext = "{";
+	for key, val in pairs(op) do
+		newtext = newtext .. "\t\"" .. key .. "\":\""	..		val		.. "\",\n";
+	end
+	newtext = newtext .. "\t\"j" .. jobid .. "\":\""	..		_G.dictionary.ReplaceDicIDInCompStr(addname)		.. "\"\n}\n";
+	local filep = io.open(jsonpath, "w");
+	if filep then
+		filep:write(newtext);
+		filep:close();
+	end
+	local acutil = require("acutil");
+	op = acutil.loadJSON(jsonpath);
+
+	CHAT_SYSTEM("[pmember] : You found a new class of " .. addname .. " ! Add it to settings.json as j" .. jobid .. ".");
+
+	return addname;
 end
 
 function PMEMBER_PARTY_JOB_TOOLTIP(frame, cid, uiChild, nowJobName)
@@ -217,7 +237,7 @@ function PMEMBER_SET_LOGOUT_PARTYINFO_ITEM(frame, msg, partyMemberInfo, count, m
 				local partyMemberName = partyMemberInfo:GetName();
 				g.idlist[j].logout = 1;
 				if partyMemberName ~= "None" then
-					CHAT_SYSTEM(op.logout .. "[LOGOUT] {/}" .. partyMemberName .. op.test .. "");
+					CHAT_SYSTEM(op.logout .. "[LOGOUT] {/}" .. op.charname .. partyMemberName .. "{/}");
 				end
 			end
 		end
@@ -276,6 +296,7 @@ local defaults = {
 	j1012 = "ムルミロ",
 	j1017 = "ランサー",
 	j1005 = "センチュリオン",
+	j1018 = "マタドール",
 	j2001 = "ウィザード",
 	j2002 = "パイロマンサー",
 	j2003 = "クリオマンサー",
@@ -294,6 +315,7 @@ local defaults = {
 	j2018 = "エンチャンター",
 	j2012 = "ミミック",
 	j2013 = "タオイスト・ダミー",
+	j2019 = "シャドウマンサー",
 	j3001 = "アーチャー",
 	j3003 = "クォレシューター",
 	j3004 = "レンジャー",
@@ -311,6 +333,7 @@ local defaults = {
 	j3007 = "ハッカペル",
 	j3012 = "パイドパイパー",
 	j3013 = "アプレイサー",
+	j3018 = "バレットマーカー",
 	j4001 = "クレリック",
 	j4002 = "プリースト",
 	j4003 = "クリヴィス",
@@ -330,6 +353,7 @@ local defaults = {
 	j4016 = "インクイジター",
 	j4017 = "タオイスト",
 	j4013 = "シェパード",
+	j4019 = "ジーロット",
 	j9001 = "GM"
 };
 
@@ -372,6 +396,7 @@ local function LOAD_SETTINGS()
 			filep:write("\t\"j1012\":\""	..		op.j1012	.."\",\n");
 			filep:write("\t\"j1017\":\""	..		op.j1017	.."\",\n");
 			filep:write("\t\"j1005\":\""	..		op.j1005	.."\",\n");
+			filep:write("\t\"j1018\":\""	..		op.j1018	.."\",\n");
 			filep:write("\t\"j2001\":\""	..		op.j2001	.."\",\n");
 			filep:write("\t\"j2002\":\""	..		op.j2002	.."\",\n");
 			filep:write("\t\"j2003\":\""	..		op.j2003	.."\",\n");
@@ -390,6 +415,7 @@ local function LOAD_SETTINGS()
 			filep:write("\t\"j2018\":\""	..		op.j2018	.."\",\n");
 			filep:write("\t\"j2012\":\""	..		op.j2012	.."\",\n");
 			filep:write("\t\"j2013\":\""	..		op.j2013	.."\",\n");
+			filep:write("\t\"j2019\":\""	..		op.j2019	.."\",\n");
 			filep:write("\t\"j3001\":\""	..		op.j3001	.."\",\n");
 			filep:write("\t\"j3003\":\""	..		op.j3003	.."\",\n");
 			filep:write("\t\"j3004\":\""	..		op.j3004	.."\",\n");
@@ -407,6 +433,7 @@ local function LOAD_SETTINGS()
 			filep:write("\t\"j3007\":\""	..		op.j3007	.."\",\n");
 			filep:write("\t\"j3012\":\""	..		op.j3012	.."\",\n");
 			filep:write("\t\"j3013\":\""	..		op.j3013	.."\",\n");
+			filep:write("\t\"j3018\":\""	..		op.j3018	.."\",\n");
 			filep:write("\t\"j4001\":\""	..		op.j4001	.."\",\n");
 			filep:write("\t\"j4002\":\""	..		op.j4002	.."\",\n");
 			filep:write("\t\"j4003\":\""	..		op.j4003	.."\",\n");
@@ -426,6 +453,7 @@ local function LOAD_SETTINGS()
 			filep:write("\t\"j4016\":\""	..		op.j4016	.."\",\n");
 			filep:write("\t\"j4017\":\""	..		op.j4017	.."\",\n");
 			filep:write("\t\"j4013\":\""	..		op.j4013	.."\",\n");
+			filep:write("\t\"j4019\":\""	..		op.j4019	.."\",\n");
 			filep:write("\t\"j9001\":\""	..		op.j9001	.."\"\n");
 			filep:write("}\n");
 			filep:close();
@@ -454,4 +482,4 @@ function PMEMBER_ON_INIT(addon, frame)
 	end
 end
 
-CHAT_SYSTEM("Party Member v1.1.0 loaded!");
+CHAT_SYSTEM("Party Member v1.2.0 loaded!");
