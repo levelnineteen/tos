@@ -3,7 +3,7 @@
         "name" : "Party Link",
         "file" : "plink",
         "extension" : "ipf",
-        "fileVersion" : "v1.0.0",
+        "fileVersion" : "v1.0.2",
         "releaseTag" : "plink",
         "unicode" : "⛄",
         "description" : "パーティリンクの生のIDを表示し、入力して参加できるようにする。コマンドは「詳細」から確認してください。",
