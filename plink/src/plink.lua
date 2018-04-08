@@ -16,6 +16,7 @@ function PLINK_COMMAND(words)
 			CHAT_SYSTEM("You are not in Party");
 		else
 			local partyID = pcparty.info:GetPartyID();
+			_G.party.ReqChangeProperty(0, "AllowLinkJoin", 1);
 			CHAT_SYSTEM("Your PartyID is " .. partyID);
 		end
 	elseif cmd == "join" then
@@ -37,4 +38,4 @@ function PLINK_ON_INIT(addon, frame)
 	acutil.slashCommand("/plink", PLINK_COMMAND);
 end
 
-CHAT_SYSTEM("Party Link v1.0.0 loaded");
+CHAT_SYSTEM("Party Link v1.0.2 loaded");
