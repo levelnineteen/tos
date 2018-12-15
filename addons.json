@@ -40,7 +40,7 @@
         "name" : "SimpleWarpFix",
         "file" : "simplewarp",
         "extension" : "ipf",
-        "fileVersion" : "v1.0.0",
+        "fileVersion" : "v1.2.0",
         "releaseTag" : "simplewarp",
         "unicode" : "⛄",
         "description" : "既存（ITOS)のSimpleWarpをティルトルビーのヴァカリネ像に対応させたもの。既存の物はアンインストールしてください。",
