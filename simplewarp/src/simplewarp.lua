@@ -137,7 +137,7 @@ function SIMPLEWARP_GO(frame)
 	local warpFrame = ui.GetFrame('simplewarp');
 	local warpCls = GetClass('camp_warp', userWarps[selected_warp]["ClassName"]); 
 	local nowZoneName = GetZoneName(GetMyPCObject());
-	local myMoney = GET_TOTAL_MONEY();
+	local myMoney = tonumber(GET_TOTAL_MONEY_STR());
 
 	local targetMapName;
 	local mapClassId;
@@ -165,7 +165,7 @@ function SIMPLEWARP_GO(frame)
 		ui.SysMsg(ScpArgMsg('Auto_SilBeoKa_BuJogHapNiDa.'));
 		return;
 	end
-    
+
 	local cheat = string.format("/intewarp %d %d", mapClassId, userWarps[selected_warp]["type"]);
 	if warpitemname ~= 'NO' and warpitemname ~= 'None' then
 		cheat = string.format("/intewarpByItem %d %d %s", mapClassId, userWarps[selected_warp]["type"], warpitemname);
@@ -176,6 +176,7 @@ function SIMPLEWARP_GO(frame)
 	if warpFrame:IsVisible() == 1 then
 		ui.CloseFrame('simplewarp');
 	end
+
 end
 
 function INTE_WARP_OPEN_FOR_QUICK_SLOT_HOOKED()
