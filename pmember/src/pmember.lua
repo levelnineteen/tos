@@ -48,8 +48,8 @@ local function RepShortName(jobid, gender)
 	return addname;
 end
 
-function PMEMBER_PARTY_JOB_TOOLTIP(frame, cid, uiChild, nowJobName)
-	PARTY_JOB_TOOLTIP_OLD(frame, cid, uiChild, nowJobName);
+function PMEMBER_PARTY_JOB_TOOLTIP(frame, cid, uiChild, nowJobName, isChangeMainClass)
+	PARTY_JOB_TOOLTIP_OLD(frame, cid, uiChild, nowJobName, isChangeMainClass);
 	--CHAT_SYSTEM("SET_PARTY_JOB_TOOLTIP " .. cid);
 	local otherpcinfo = session.otherPC.GetByStrCID(cid);
 	if otherpcinfo == nil then
@@ -228,8 +228,8 @@ function PMEMBER_ON_PARTYINFO_UPDATE(frame, msg, argStr, argNum)
 	end
 end
 
-function PMEMBER_SET_LOGOUT_PARTYINFO_ITEM(frame, msg, partyMemberInfo, count, makeLogoutPC, leaderFID, isCorsairType)
-	SET_LOGOUT_PARTYINFO_ITEM_OLD(frame, msg, partyMemberInfo, count, makeLogoutPC, leaderFID, isCorsairType);
+function PMEMBER_SET_LOGOUT_PARTYINFO_ITEM(frame, msg, partyMemberInfo, count, makeLogoutPC, leaderFID, isCorsairType, partyID)
+	SET_LOGOUT_PARTYINFO_ITEM_OLD(frame, msg, partyMemberInfo, count, makeLogoutPC, leaderFID, isCorsairType, partyID);
 	local aid= partyMemberInfo:GetAID();
 	for j = 1, #g.idlist do
 		if g.idlist[j].aid == aid then
@@ -482,4 +482,4 @@ function PMEMBER_ON_INIT(addon, frame)
 	end
 end
 
-CHAT_SYSTEM("Party Member v1.2.0 loaded!");
+CHAT_SYSTEM("Party Member v1.2.2 loaded!");
